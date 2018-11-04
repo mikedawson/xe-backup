@@ -4,9 +4,16 @@
 # Inspired by NAUBackup ( https://github.com/NAUbackup/VmBackup ),
 #  but created to allow backing up remote VMs using XAPI over the network.
 
+
 VM_NAME=""
 DEST_DIR="/snapshots/BACKUPS"
 BACKUPS_TO_KEEP=3
+
+if [ "$(which xe)" == "" ]; then
+	echo "ERROR: xe command line not installed. Please install it, see README"
+	exit 1  
+fi
+
 
 while [ "$1" != "" ]; do
     case $1 in
